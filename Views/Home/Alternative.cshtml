@@ -1,0 +1,50 @@
+﻿@model Lab1.Models.ViewModels.AlternativeViewModel
+
+@{
+    ViewData["Title"] = "Alternative";
+}
+
+<h2>Alternative</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Alternative" id="form" method="post">
+            <input name="idAlt" value="@Model.Alternative.IdAlt" type="hidden" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="@Model.Alternative.AName" class="control-label"></label>
+                <input asp-for="@Model.Alternative.AName" name="aName" class="form-control" />
+                <span asp-validation-for="@Model.Alternative.AName" class="text-danger"></span>
+            </div>
+            @foreach (var crit in Model.Criterions)
+            {
+                <div class="form-group">
+                    <label asp-for="Criterion.CName" class="control-label">@crit.CName</label><br>
+                    <select form="form" name="idMarks" asp-for="Vector.Mark.MName" class="form-control">
+                        @foreach (var mark in Model.Marks)
+                        {
+                            if (Model.Vectors.FirstOrDefault(v => v.IdAlt == Model.Alternative.IdAlt && v.IdMark == mark.IdMark)?.IdMark == mark.IdMark && mark.IdCrit == crit.IdCrit)
+                            {
+                                <option selected="selected" value="@mark.IdMark">@mark.MName</option>
+                                continue;
+                            }
+
+                            if (mark.IdCrit == crit.IdCrit)
+                            {
+                                <option value="@mark.IdMark">@mark.MName</option>
+                            }
+                        }
+                    </select>
+                    <span asp-validation-for="Criterion.CType" class="text-danger"></span>
+                </div>
+            }
+            <div class="form-group">
+                <input type="submit" value="Confirm" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

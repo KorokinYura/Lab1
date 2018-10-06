@@ -1,0 +1,75 @@
+﻿@model Lab1.Models.ViewModels.CriterionViewModel
+
+@{
+    ViewData["Title"] = "Criterion";
+}
+
+<h4>Criterion</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Criterion" id="form">
+            <input asp-for="Criterion.IdCrit" type="hidden" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Criterion.CName" class="control-label"></label>
+                <input asp-for="Criterion.CName" class="form-control" />
+                <span asp-validation-for="Criterion.CName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Criterion.CRange" class="control-label"></label>
+                <input asp-for="Criterion.CRange" class="form-control" />
+                <span asp-validation-for="Criterion.CRange" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Criterion.CWeight" class="control-label"></label>
+                <input asp-for="Criterion.CWeight" class="form-control" />
+                <span asp-validation-for="Criterion.CWeight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Criterion.CType" class="control-label"></label><br>
+                <select form="form" asp-for="Criterion.CType" class="form-control">
+                    <option value="Количественный">Количественный</option>
+                    <option value="Качественный">Качественный</option>
+                </select>
+                @*<input asp-for="@Model.Criterion.CType" class="form-control" />*@
+                <span asp-validation-for="Criterion.CType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Criterion.OptimType" class="control-label"></label>
+                <select form="form" asp-for="Criterion.OptimType" class="form-control">
+                    <option value="Max">Max</option>
+                    <option value="Min">Min</option>
+                </select>
+                @*<input asp-for="@Model.Criterion.OptimType" class="form-control" />*@
+                <span asp-validation-for="Criterion.OptimType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Criterion.EdIzmer" class="control-label"></label>
+                <input asp-for="Criterion.EdIzmer" class="form-control" />
+                <span asp-validation-for="Criterion.EdIzmer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Criterion.ScaleType" class="control-label"></label>
+                <select form="form" asp-for="Criterion.ScaleType" class="form-control">
+                    <option value="Абсолютная шкала">Абсолютная шкала</option>
+                    <option value="Порядковая шкала">Порядковая шкала</option>
+                    <option value="Шкала наименований">Шкала наименований</option>
+                </select>
+                @*<input asp-for="@Model.Criterion.ScaleType" class="form-control" />*@
+                <span asp-validation-for="Criterion.ScaleType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Confirm" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="ViewCriterions">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,60 @@
+﻿@model Lab1.Models.ViewModels.ViewAlternativesViewModel
+
+@{
+    ViewData["Title"] = "ViewAlternatives";
+}
+
+<h2>Alternatives</h2>
+<hr>
+<a asp-action="Alternative" class="btn btn-default" style="margin-left: 1%">Create New</a><br /><br />
+
+@foreach (var alter in Model.Alternatives)
+{
+    <div>
+        <b style="font-size: 150%">
+            @alter.AName
+        </b>
+        <a asp-action="Alternative" asp-route-idAlt="@alter.IdAlt">Edit</a> | 
+        <a asp-action="RemoveAlternative" asp-route-idAlt="@alter.IdAlt">Delete</a><br />
+    </div>
+    <div class="panel panel-default">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Criterions.First().CName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Marks.First().MName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Criterions.First().EdIzmer)
+                    </th>
+                </tr>
+            </thead>
+            @foreach (var crit in Model.Criterions)
+            {
+                <tbody>
+                    <tr>
+                        <th style="font-weight: normal">
+                            @crit.CName
+                        </th>
+                        <th style="font-weight: normal">
+                            @{
+                                var vects = Model.Vectors.Where(v => v.IdAlt == alter.IdAlt);
+                                var marks = Model.Marks.Where(m => m.IdCrit == crit.IdCrit);
+                                var mark = marks.FirstOrDefault(m => m.IdMark == vects.FirstOrDefault(v => v.IdMark == m.IdMark)?.IdMark);
+
+                                string print = mark == null ? "" : mark.MName;
+                            }
+                            @print
+                        </th>
+                        <th style="font-weight: normal">
+                            @crit.EdIzmer
+                        </th>
+                    </tr>
+                </tbody>
+            }
+        </table>
+    </div>
+}

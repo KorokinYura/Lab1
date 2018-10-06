@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Lab1.Models.Criterion>
+
+@{
+    ViewData["Title"] = "ViewCriterions";
+}
+
+<h2>Criterions</h2>
+<hr>
+<a asp-action="Criterion" class="btn btn-default" style="margin-left: 1%">Create New</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CRange)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CWeight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OptimType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EdIzmer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScaleType)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CRange)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CWeight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OptimType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EdIzmer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ScaleType)
+                </td>
+                <td>
+                    <a asp-action="Criterion" asp-route-idCrit="@item.IdCrit">Edit</a> |
+                    @*<a asp-action="Details" asp-route-id="@item.IdCrit">Details</a> |*@
+                    <a asp-action="RemoveCriterion" asp-route-idCrit="@item.IdCrit">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

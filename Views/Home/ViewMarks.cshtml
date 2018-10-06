@@ -1,0 +1,53 @@
+﻿@model Lab1.Models.ViewModels.ViewMarksViewModel
+
+@{
+    ViewData["Title"] = "ViewMarks";
+}
+
+<h2>Marks</h2>
+<hr />
+<a asp-action="Mark" class="btn btn-default" style="margin-left: 1%">Create New</a><br /><br />
+
+@foreach (var crit in Model.Criterions)
+{
+    <div>
+        <b style="font-size: 150%">
+            @crit.CName
+        </b>
+    </div>
+    <div class="panel panel-default">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Mark.MName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Criterions.First().EdIzmer)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var mark in Model.Marks)
+                {
+                    @if (mark.IdCrit == crit.IdCrit)
+                    {
+                        <tr>
+                            <td style="font-weight: normal">
+                                @mark.MName
+                            </td>
+                            <td style="font-weight: normal">
+                                @crit.EdIzmer
+                            </td>
+                            <td>
+                                <a asp-action="Mark" asp-route-idMark="@mark.IdMark">Edit</a> |
+                                @*<a asp-action="Details" asp-route-id="@item.IdCrit">Details</a> |*@
+                                <a asp-action="RemoveMark" asp-route-idMark="@mark.IdMark">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+}
