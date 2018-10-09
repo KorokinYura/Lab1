@@ -10,51 +10,57 @@
 
 @foreach (var alter in Model.Alternatives)
 {
-    <div>
-        <b style="font-size: 150%">
-            @alter.AName
-        </b>
-        <a asp-action="Alternative" asp-route-idAlt="@alter.IdAlt">Edit</a> | 
+    <a data-toggle="collapse" href="#@alter.IdAlt">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <b style="font-size: 150%; color: #3c3c3c">
+                    @alter.AName
+                </b>
+            </div>
+        </div>
+    </a>
+    <div id="@alter.IdAlt" class="panel-collapse collapse">
+        <a asp-action="Alternative" asp-route-idAlt="@alter.IdAlt">Edit</a> |
         <a asp-action="RemoveAlternative" asp-route-idAlt="@alter.IdAlt">Delete</a><br />
-    </div>
-    <div class="panel panel-default">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Criterions.First().CName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Marks.First().MName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Criterions.First().EdIzmer)
-                    </th>
-                </tr>
-            </thead>
-            @foreach (var crit in Model.Criterions)
-            {
-                <tbody>
+        <div class="panel panel-default">
+            <table class="table">
+                <thead>
                     <tr>
-                        <th style="font-weight: normal">
-                            @crit.CName
+                        <th>
+                            @Html.DisplayNameFor(model => model.Criterions.First().CName)
                         </th>
-                        <th style="font-weight: normal">
-                            @{
-                                var vects = Model.Vectors.Where(v => v.IdAlt == alter.IdAlt);
-                                var marks = Model.Marks.Where(m => m.IdCrit == crit.IdCrit);
-                                var mark = marks.FirstOrDefault(m => m.IdMark == vects.FirstOrDefault(v => v.IdMark == m.IdMark)?.IdMark);
-
-                                string print = mark == null ? "" : mark.MName;
-                            }
-                            @print
+                        <th>
+                            @Html.DisplayNameFor(model => model.Marks.First().MName)
                         </th>
-                        <th style="font-weight: normal">
-                            @crit.EdIzmer
+                        <th>
+                            @Html.DisplayNameFor(model => model.Criterions.First().EdIzmer)
                         </th>
                     </tr>
-                </tbody>
-            }
-        </table>
+                </thead>
+                @foreach (var crit in Model.Criterions)
+                {
+                    <tbody>
+                        <tr>
+                            <th style="font-weight: normal">
+                                @crit.CName
+                            </th>
+                            <th style="font-weight: normal">
+                                @{
+                                    var vects = Model.Vectors.Where(v => v.IdAlt == alter.IdAlt);
+                                    var marks = Model.Marks.Where(m => m.IdCrit == crit.IdCrit);
+                                    var mark = marks.FirstOrDefault(m => m.IdMark == vects.FirstOrDefault(v => v.IdMark == m.IdMark)?.IdMark);
+
+                                    string print = mark == null ? "" : mark.MName;
+                                }
+                                @print
+                            </th>
+                            <th style="font-weight: normal">
+                                @crit.EdIzmer
+                            </th>
+                        </tr>
+                    </tbody>
+                }
+            </table>
+        </div>
     </div>
 }
