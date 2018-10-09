@@ -4,7 +4,7 @@
     ViewData["Title"] = "Mark";
 }
 
-<h2>Mark</h2>
+<h2>Оценка</h2>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -21,7 +21,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label asp-for="Mark.MName" class="control-label"></label>
+                <label asp-for="Mark.MName" class="control-label">Название оценки</label>
                 <input asp-for="Mark.MName" class="form-control" />
                 <span asp-validation-for="Mark.MName" class="text-danger"></span>
             </div>
@@ -31,10 +31,6 @@
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

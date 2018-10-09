@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Lab1.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Lab1.Models;
 
 namespace Lab1
 {
@@ -39,8 +40,17 @@ namespace Lab1
                     Configuration.GetConnectionString("DefaultConnection")
                     .Replace("|DBFolder|", Environment.CurrentDirectory + "\\Data")));
 
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<LPR>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredLength = 6;
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

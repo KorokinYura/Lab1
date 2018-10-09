@@ -12,7 +12,9 @@ namespace Lab1.Models
         public int IdRes { get; set; }
         public int IdLPR { get; set; }
         public int IdAlt { get; set; }
+        [Display(Name = "Ранг альтернативы")]
         public int Range { get; set; }
+        [Display(Name = "Полезность альтернативы")]
         public int AWeight { get; set; }
         
         public Alternative Alternative { get; set; }

@@ -4,18 +4,24 @@
     ViewData["Title"] = "ViewMarks";
 }
 
-<h2>Marks</h2>
+<h2>Оценки</h2>
 <hr />
 <a asp-action="Mark" class="btn btn-default" style="margin-left: 1%">Create New</a><br /><br />
 
 @foreach (var crit in Model.Criterions)
 {
-    <div>
-        <b style="font-size: 150%">
-            @crit.CName
-        </b>
-    </div>
-    <div class="panel panel-default">
+    <a data-toggle="collapse" href="#@crit.IdCrit">
+        <div  class="panel panel-default">
+            <div class="panel-heading">
+                <div style="color: #3c3c3c">
+                    <b style="font-size: 150%">
+                        @crit.CName
+                    </b><br />
+                </div>
+            </div>
+        </div>
+    </a>
+    <div id="@crit.IdCrit" class="panel panel-default panel-collapse collapse">
         <table class="table">
             <thead>
                 <tr>

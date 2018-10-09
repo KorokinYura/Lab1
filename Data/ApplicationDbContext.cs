@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Lab1.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<LPR>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -20,5 +20,6 @@ namespace Lab1.Data
         public DbSet<Vector> Vectors { get; set; }
         public DbSet<LPR> LPRs { get; set; }
         public DbSet<Result> Results { get; set; }
+        public DbSet<LPR> AppUsers { get; set; }
     }
 }

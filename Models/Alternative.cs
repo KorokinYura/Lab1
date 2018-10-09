@@ -11,6 +11,7 @@ namespace Lab1.Models
         [Key]
         public int IdAlt { get; set; }
         [Required]
+        [Display(Name = "Наименование альтернативы")]
         public string AName { get; set; }
     }
 }
