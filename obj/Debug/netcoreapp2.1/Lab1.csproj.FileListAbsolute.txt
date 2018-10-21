@@ -40,3 +40,6 @@ D:\NURE\3 курс\1 семестр\МоТи\Lab1\Lab1\obj\Debug\netcoreapp2.1\R
 D:\NURE\3 курс\1 семестр\МоТи\Lab1\Lab1\obj\Debug\netcoreapp2.1\Razor\Areas\Identity\Pages\Account\_ViewImports.g.cshtml.cs
 D:\NURE\3 курс\1 семестр\МоТи\Lab1\Lab1\obj\Debug\netcoreapp2.1\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.g.cshtml.cs
 D:\NURE\3 курс\1 семестр\МоТи\Lab1\Lab1\obj\Debug\netcoreapp2.1\Razor\Areas\Identity\Pages\_ViewImports.g.cshtml.cs
+D:\NURE\3 курс\1 семестр\МоТи\Lab1\Lab1\obj\Debug\netcoreapp2.1\Razor\Views\Home\LinearConvolution.g.cshtml.cs
+D:\NURE\3 курс\1 семестр\МоТи\Lab1\Lab1\obj\Debug\netcoreapp2.1\Razor\Views\Home\ShowLinearConvolution.g.cshtml.cs
+D:\NURE\3 курс\1 семестр\МоТи\Lab1\Lab1\obj\Debug\netcoreapp2.1\Razor\Views\Home\Result.g.cshtml.cs

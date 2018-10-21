@@ -66,7 +66,7 @@ using Lab1.Models;
             WriteLiteral("\r\n<h2>Оценки</h2>\r\n<hr />\r\n");
             EndContext();
             BeginContext(124, 83, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a95a508e75914209ac304dc870563232", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "95eafde9488d4bf580e4752585cf3c1f", async() => {
                 BeginContext(193, 10, true);
                 WriteLiteral("Create New");
                 EndContext();
@@ -186,7 +186,7 @@ WriteAttributeValue("", 652, crit.IdCrit, 652, 12, false);
             WriteLiteral("\r\n                            </td>\r\n                            <td>\r\n                                ");
             EndContext();
             BeginContext(1658, 61, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "093d97531fdb492cbe372530c6e0252f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8210f832afbb48adb246ca91daded7f5", async() => {
                 BeginContext(1711, 4, true);
                 WriteLiteral("Edit");
                 EndContext();
@@ -224,7 +224,7 @@ WriteAttributeValue("", 652, crit.IdCrit, 652, 12, false);
             WriteLiteral("                                ");
             EndContext();
             BeginContext(1858, 69, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "81c9048a3d924752b6bea49774db154a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "44554c8e7ea04400b8ad526e91495025", async() => {
                 BeginContext(1917, 6, true);
                 WriteLiteral("Delete");
                 EndContext();

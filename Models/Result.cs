@@ -10,10 +10,11 @@ namespace Lab1.Models
     {
         [Key]
         public int IdRes { get; set; }
-        public int IdLPR { get; set; }
+        [Display(Name = "Имя пользователя")]
+        public string UserName { get; set; }
         public int IdAlt { get; set; }
         [Display(Name = "Ранг альтернативы")]
-        public int Range { get; set; }
+        public double Range { get; set; }
         [Display(Name = "Полезность альтернативы")]
         public int AWeight { get; set; }
         

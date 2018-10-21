@@ -1,0 +1,49 @@
+﻿@model Lab1.Models.ViewModels.ResultViewModel
+
+@{
+    ViewData["Title"] = "Result";
+}
+
+<h2>Result</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Result.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Result.Alternative.AName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Result.Range)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Result.AWeight)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Results)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Model.Alternatives.FirstOrDefault(a => a.IdAlt == item.IdAlt)?.AName
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Range)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AWeight)
+                </td>
+                <td>
+                    <a asp-action="RemoveResult" asp-route-idRes="@item.IdRes">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

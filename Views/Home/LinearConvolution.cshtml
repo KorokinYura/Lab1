@@ -1,0 +1,63 @@
+﻿@model Lab1.Models.ViewModels.LinearConvolution
+
+@{
+    ViewData["Title"] = "LinearConvolution";
+}
+
+<h2>Линейная адитивная свёртка</h2>
+
+<div>
+    <hr />
+    <form asp-action="LinearConvolution" method="post">
+        <h4>Этаж</h4>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="floor" value="high" checked>
+            <label class="form-check-label" for="exampleRadios1">
+                Чем выше, тем лучше
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="floor" value="low">
+            <label class="form-check-label" for="exampleRadios2">
+                Чем ниже, тем лучше
+            </label>
+        </div>
+
+        <hr />
+
+        <h4>Расстояние от метро</h4>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="metro" value="important" checked>
+            <label class="form-check-label" for="exampleRadios1">
+                Важно
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="metro" value="notImportant">
+            <label class="form-check-label" for="exampleRadios2">
+                Не важно
+            </label>
+        </div>
+
+        <hr />
+
+        <h4>Автономное отопление</h4>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="heat" value="important" checked>
+            <label class="form-check-label" for="exampleRadios1">
+                Важно
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="heat" value="notImportant">
+            <label class="form-check-label" for="exampleRadios2">
+                Не важно
+            </label>
+        </div>
+
+        <hr />
+        <div class="form-group">
+            <input type="submit" value="Confirm" class="btn btn-default" />
+        </div>
+    </form>
+</div>

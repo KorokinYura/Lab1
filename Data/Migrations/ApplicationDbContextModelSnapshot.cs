@@ -149,11 +149,11 @@ namespace Lab1.Data.Migrations
 
                     b.Property<int>("IdAlt");
 
-                    b.Property<int>("IdLPR");
-
                     b.Property<string>("LPRId");
 
-                    b.Property<int>("Range");
+                    b.Property<double>("Range");
+
+                    b.Property<string>("UserName");
 
                     b.HasKey("IdRes");
 

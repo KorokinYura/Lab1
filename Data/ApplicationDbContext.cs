@@ -18,7 +18,6 @@ namespace Lab1.Data
         public DbSet<Criterion> Criterions { get; set; }
         public DbSet<Mark> Marks { get; set; }
         public DbSet<Vector> Vectors { get; set; }
-        public DbSet<LPR> LPRs { get; set; }
         public DbSet<Result> Results { get; set; }
         public DbSet<LPR> AppUsers { get; set; }
     }

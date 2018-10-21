@@ -1,0 +1,26 @@
+﻿@model Lab1.Models.ViewModels.LinearConvolutionViewModel
+
+@{
+    ViewData["Title"] = "ShowLinearConvolution";
+}
+
+<h2>ShowLinearConvolution</h2>
+<hr />
+
+<form asp-action="ShowLinearConvolution" method="post">
+    <input name="maxMark" value="@Model.AltValues.Max(a => a.Value)" type="hidden" />
+    <ul class="list-group">
+        @foreach (var pair in Model.AltValues.OrderByDescending(pair => pair.Value))
+        {
+            <li class="list-group-item">
+                <input class="form-check-input" type="radio" name="alt" value="@pair.Key|@pair.Value" checked>
+                @pair.Key
+                <span class="badge">@pair.Value</span>
+            </li>
+        }
+    </ul>
+
+    <div class="form-group">
+        <input type="submit" value="Confirm" class="btn btn-default" />
+    </div>
+</form>

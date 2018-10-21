@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Lab1.Models;
 using Lab1.Data;
 using Lab1.Models.ViewModels;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Lab1.Controllers
 {
@@ -87,7 +89,7 @@ namespace Lab1.Controllers
                         IdMark = idMark
                     });
                 }
-                
+
                 _db.SaveChanges();
             }
 
@@ -184,6 +186,170 @@ namespace Lab1.Controllers
             _db.Marks.Remove(_db.Marks.First(m => m.IdMark == idMark));
             _db.SaveChanges();
             return RedirectToAction("ViewMarks");
+        }
+
+
+
+
+        // lab 2
+        [Authorize]
+        public IActionResult LinearConvolution()
+        {
+            return View(new LinearConvolution
+            {
+                Alternatives = _db.Alternatives
+            });
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult LinearConvolution(string floor, string metro, string heat)
+        {
+            var vectList = FormList().OrderBy(v => v.Alternative.AName).ToList();
+
+            var dict = GetCritValues(vectList, floor, metro, heat);
+
+            return View("ShowLinearConvolution", new LinearConvolutionViewModel
+            {
+                Vectors = vectList,
+                AltValues = dict
+            });
+        }
+
+        [Authorize]
+        public Dictionary<string, int> GetCritValues(List<Vector> vectList, string floor, string metro, string heat)
+        {
+            var altValueDict = new Dictionary<string, int>();
+
+            foreach (var alt in _db.Alternatives)
+            {
+                altValueDict.Add(alt.AName, 0);
+            }
+
+            int curVal = 0;
+            int maxVal = 0;
+            int minVal = 0;
+            var altNames = new List<string>();
+            bool max = false;
+
+            foreach (var crit in _db.Criterions)
+            {
+                altNames = altNames.Distinct().ToList();
+
+                foreach (var alt in altNames)
+                {
+                    altValueDict[alt]++;
+                }
+
+                altNames = new List<string>();
+
+                if (crit.CName != "Внешний вид" && crit.CName != "Автономное отопление")
+                {
+                    if ((crit.OptimType == "Max" && crit.CName != "Этаж") || floor == "high")
+                    {
+                        max = true;
+                        maxVal = int.Parse(vectList.Where(v => v.Mark.Criterion.CName == crit.CName).Max(v => v.Mark.MName));
+                    }
+                    else
+                    {
+                        max = false;
+                        minVal = int.Parse(vectList.Where(v => v.Mark.Criterion.CName == crit.CName).Min(v => v.Mark.MName));
+                    }
+                }
+
+                foreach (var alt in _db.Alternatives)
+                {
+                    if (crit.CName != "Внешний вид" && crit.CName != "Автономное отопление")
+                    {
+                        curVal = int.Parse(vectList.Where(v => v.Alternative.AName == alt.AName)
+                            .First(v => v.Mark.Criterion.CName == crit.CName).Mark.MName);
+                    }
+                    else
+                    {
+                        string temp = vectList.Where(v => v.Alternative.AName == alt.AName)
+                            .First(v => v.Mark.Criterion.CName == crit.CName).Mark.MName;
+
+                        if (temp == "Красиво")
+                            altNames.Add(alt.AName);
+                        if (temp == "Есть" && heat != "notImportant")
+                            altNames.Add(alt.AName);
+                        continue;
+                    }
+
+                    if (!(crit.CName == "Расстояние от метро" && metro == "notImportant"))
+                        if (max)
+                        {
+                            if (curVal == maxVal)
+                            {
+                                altNames.Add(alt.AName);
+                            }
+
+                        }
+                        else
+                        {
+                            if (curVal == minVal)
+                            {
+                                altNames.Add(alt.AName);
+                            }
+                        }
+                }
+            }
+
+            return altValueDict;
+        }
+
+        [Authorize]
+        public List<Vector> FormList()
+        {
+            return _db.Vectors.Include(v => v.Alternative)
+                .Include(v => v.Mark)
+                .ThenInclude(m => m.Criterion)
+                .ToList();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult ShowLinearConvolution(string alt, int maxMark)
+        {
+            string altName = alt.Split('|').First();
+            int altVal = int.Parse(alt.Split('|').Last());
+
+            _db.Results.Add(new Result
+            {
+                UserName = User.Identity.Name,
+                IdAlt = _db.Alternatives.First(a => a.AName == altName).IdAlt,
+                AWeight = altVal,
+                Range = altVal == 0 ? 0 : (double)altVal / maxMark
+            });
+
+            _db.SaveChanges();
+
+            return View("Result", new ResultViewModel
+            {
+                Results = _db.Results,
+                Alternatives = _db.Alternatives
+            });
+        }
+
+        public IActionResult Result()
+        {
+            return View("Result", new ResultViewModel
+            {
+                Results = _db.Results,
+                Alternatives = _db.Alternatives
+            });
+        }
+
+        public IActionResult RemoveResult(int idRes)
+        {
+            _db.Results.Remove(_db.Results.First(m => m.IdRes == idRes));
+            _db.SaveChanges();
+
+            return View("Result", new ResultViewModel
+            {
+                Results = _db.Results,
+                Alternatives = _db.Alternatives
+            });
         }
     }
 }
