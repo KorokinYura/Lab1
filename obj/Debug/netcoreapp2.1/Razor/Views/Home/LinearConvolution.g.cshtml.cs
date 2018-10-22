@@ -65,7 +65,7 @@ using Lab1.Models;
             WriteLiteral("\r\n<h2>Линейная адитивная свёртка</h2>\r\n\r\n<div>\r\n    <hr />\r\n    ");
             EndContext();
             BeginContext(168, 1912, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7e7456b4878043ab856133c19be2f07b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "54a4ad523bd64c12864cf0727c9699c0", async() => {
                 BeginContext(219, 1854, true);
                 WriteLiteral(@"
         <h4>Этаж</h4>

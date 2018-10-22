@@ -1,0 +1,106 @@
+﻿@model Lab1.Models.ViewModels.EliminationViewModel
+
+@{
+    ViewData["Title"] = "Elimination";
+}
+
+<h2>Выбор</h2>
+<hr />
+
+<div class="col-md-6">
+    <p style="font-size: 150%; color: #3c3c3c; text-align: center; font-weight: bold">
+        @Model.Alternative1.AName
+    </p>
+    <div class="panel panel-default">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Criterion.CName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Mark.MName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Criterion.EdIzmer)
+                    </th>
+                </tr>
+            </thead>
+            @foreach (var v in Model.Vectors1)
+            {
+                <tbody>
+                    <tr>
+                        <th style="font-weight: normal">
+                            @v.Mark.Criterion.CName
+                        </th>
+                        <th style="font-weight: normal">
+                            @v.Mark.MName
+                        </th>
+                        <th style="font-weight: normal">
+                            @v.Mark.Criterion.EdIzmer
+                        </th>
+                    </tr>
+                </tbody>
+            }
+        </table>
+    </div>
+    <form asp-action="Elimination">
+        <input name="idAlt" value="@Model.Alternative2.IdAlt" type="hidden" />
+        <div class="form-group" style="text-align:center;">
+            <input type="submit" value="Выбрать" class="btn btn-default center-block" style="background-color: dodgerblue; color: white; width: 50%" />
+        </div>
+    </form>
+</div>
+
+<div class="col-md-6">
+    <p style="font-size: 150%; color: #3c3c3c; text-align: center; font-weight: bold">
+        @Model.Alternative2.AName
+    </p>
+    <div>
+        <div class="panel panel-default">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Criterion.CName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Mark.MName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Criterion.EdIzmer)
+                        </th>
+                    </tr>
+                </thead>
+                @foreach (var v in Model.Vectors2)
+                {
+                    <tbody>
+                        <tr>
+                            <th style="font-weight: normal">
+                                @v.Mark.Criterion.CName
+                            </th>
+                            <th style="font-weight: normal">
+                                @v.Mark.MName
+                            </th>
+                            <th style="font-weight: normal">
+                                @v.Mark.Criterion.EdIzmer
+                            </th>
+                        </tr>
+                    </tbody>
+                }
+            </table>
+        </div>
+    </div>
+    <form asp-action="Elimination">
+        <input name="idAlt" value="@Model.Alternative1.IdAlt" type="hidden" />
+        <div class="form-group" style="text-align:center;">
+            <input type="submit" value="Выбрать" class="btn btn-default center-block" style="background-color: dodgerblue; color: white; width: 50%" />
+        </div>
+    </form>
+</div>
+
+<form asp-action="RestartElimination">
+    <div class="form-group" style="text-align:center;">
+        <input type="submit" value="Начать заново" class="btn btn-default center-block" style="background-color: forestgreen; color: white; width: 40%" />
+    </div>
+</form>

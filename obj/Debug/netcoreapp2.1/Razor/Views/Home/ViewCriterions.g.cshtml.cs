@@ -66,7 +66,7 @@ using Lab1.Models;
             WriteLiteral("\r\n<h2>Критерии</h2>\r\n<hr>\r\n");
             EndContext();
             BeginContext(122, 88, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "528acf132175417abb3de17d49b73279", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "926392ca733d49b1be4cf00a07c816ea", async() => {
                 BeginContext(196, 10, true);
                 WriteLiteral("Create New");
                 EndContext();
@@ -205,7 +205,7 @@ using Lab1.Models;
             WriteLiteral("\r\n                </td>\r\n                <td>\r\n                    ");
             EndContext();
             BeginContext(1907, 66, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c5713ab9e0f0456096729a2eb3becbba", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "43272bf4f1634b4fb55f4a3f50811fa2", async() => {
                 BeginContext(1965, 4, true);
                 WriteLiteral("Edit");
                 EndContext();
@@ -243,7 +243,7 @@ using Lab1.Models;
             WriteLiteral("                    ");
             EndContext();
             BeginContext(2088, 74, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9143641c393e4baa9949093771657add", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "73e582f1023749e792c0d9478c7359b7", async() => {
                 BeginContext(2152, 6, true);
                 WriteLiteral("Delete");
                 EndContext();

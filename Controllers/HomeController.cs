@@ -351,5 +351,97 @@ namespace Lab1.Controllers
                 Alternatives = _db.Alternatives
             });
         }
+
+        // lab 3
+
+        private static List<Alternative> Alternatives { get; set; } = new List<Alternative>();
+        private static int ind = 0;
+
+        [Authorize]
+        public IActionResult Elimination()
+        {
+            if (Alternatives.Count == 0)
+            {
+                int val = 1;
+
+                while (true)
+                {
+                    if (val * 2 <= _db.Alternatives.Count())
+                        val *= 2;
+                    else
+                        break;
+                }
+
+                Alternatives = _db.Alternatives.Take(val).ToList();
+            }
+
+            var vects = FormList();
+
+            while(ind <= Alternatives.Count())
+            {
+                int c = ind;
+                int c1 = Alternatives.Count;
+
+                if (ind + 2 > Alternatives.Count)
+                    ind = 0;
+                if (Alternatives.Count > 1)
+                {
+                    var v1 = vects.Where(v => v.Alternative.IdAlt == Alternatives[ind].IdAlt).ToList();
+                    var v2 = vects.Where(v => v.Alternative.IdAlt == Alternatives[ind + 1].IdAlt).ToList();
+
+                    return View(new EliminationViewModel
+                    {
+                        Alternative1 = Alternatives[ind],
+                        Alternative2 = Alternatives[ind + 1],
+                        Vectors1 = v1,
+                        Vectors2 = v2
+                    });
+                }
+                else
+                {
+                    _db.Results.Add(new Result
+                    {
+                        UserName = User.Identity.Name,
+                        IdAlt = _db.Alternatives.First(a => a.AName == Alternatives.First().AName).IdAlt
+                    });
+
+                    _db.SaveChanges();
+
+                    break;
+                }
+            }
+            
+            return RedirectToAction("Result");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult Elimination(int idAlt)
+        {
+            Alternatives.RemoveAll(a => a.IdAlt == idAlt);
+            ind++;
+
+            return RedirectToAction("Elimination");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult RestartElimination()
+        {
+            int val = 1;
+
+            while (true)
+            {
+                if (val * 2 <= _db.Alternatives.Count())
+                    val *= 2;
+                else
+                    break;
+            }
+
+            Alternatives = _db.Alternatives.Take(val).ToList();
+            ind = 0;
+
+            return RedirectToAction("Elimination");
+        }
     }
 }
