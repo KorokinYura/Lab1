@@ -62,6 +62,23 @@ namespace Lab1.Data.Migrations
                     b.ToTable("Criterions");
                 });
 
+            modelBuilder.Entity("Lab1.Models.GroupDecision", b =>
+                {
+                    b.Property<int>("IdDecision")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("IdAlt");
+
+                    b.Property<int>("Mark");
+
+                    b.Property<string>("UserName");
+
+                    b.HasKey("IdDecision");
+
+                    b.ToTable("GroupDecisions");
+                });
+
             modelBuilder.Entity("Lab1.Models.LPR", b =>
                 {
                     b.Property<string>("Id")

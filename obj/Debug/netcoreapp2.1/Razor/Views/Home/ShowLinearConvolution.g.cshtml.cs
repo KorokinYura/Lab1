@@ -65,7 +65,7 @@ using Lab1.Models;
             WriteLiteral("\r\n<h2>ShowLinearConvolution</h2>\r\n<hr />\r\n\r\n");
             EndContext();
             BeginContext(161, 672, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2e95c5411eae4b1ea1df91795210d571", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7231d66046dc41559d49b51805988aef", async() => {
                 BeginContext(216, 27, true);
                 WriteLiteral("\r\n    <input name=\"maxMark\"");
                 EndContext();

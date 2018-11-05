@@ -1,0 +1,52 @@
+﻿@model Lab1.Models.ViewModels.GroupDecisionViewModel
+@{
+    ViewData["Title"] = "GroupDecision";
+}
+
+<h2>GroupDecision</h2>
+@{ 
+    var height = Model.Alternatives.Count() * 50;
+}
+<form asp-action="GroupDecision">
+    <div class="col-md-5 panel panel-default" style="min-height: @height.ToString()px">
+        <ul class="list-group" id="added"></ul>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-5 panel panel-default" style="min-height: @height.ToString()px">
+        <ul class="list-group" id="list">
+            @foreach (var alt in Model.Alternatives)
+            {
+                <li class="list-group-item" id="@alt.IdAlt">
+                    <input type="hidden" id="binder_@alt.IdAlt" name="notAdded" value="@alt.IdAlt"/>
+                    <input value="<=" id="add_@alt.IdAlt" type="button" onclick="addToAdded(@alt.IdAlt)" />
+                    <label style="text-align: center; width: 80%">@alt.AName</label>
+                    <input value="=>" id="delete_@alt.IdAlt" style="visibility:hidden; float: right" type="button" onclick="removeFromAdded(@alt.IdAlt)" />
+                    <br>
+                </li>
+            }
+        </ul>
+    </div>
+    <input id="submit" type="submit" value="Confirm" class="btn btn-default" disabled/>
+</form>
+
+<script>
+    function addToAdded(id) {
+        $("#added").append($("#" + id));
+        $("#add_" + id).css("visibility", "hidden");
+        $("#delete_" + id).css("visibility", "visible");
+        $("#binder_" + id).attr("name", "added");
+        
+        if ($("#added li").length == @Model.Alternatives.Count()) {
+            $('#submit').removeAttr('disabled');
+        }
+            
+    }
+
+    function removeFromAdded(id) {
+        $("#list").append($("#" + id));
+        $("#add_" + id).css("visibility", "visible");
+        $("#delete_" + id).css("visibility", "hidden");
+        $("#binder_" + id).attr("name", "notAdded");
+        $('#submit').attr('disabled', 'disabled');
+    }
+</script>

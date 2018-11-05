@@ -20,5 +20,6 @@ namespace Lab1.Data
         public DbSet<Vector> Vectors { get; set; }
         public DbSet<Result> Results { get; set; }
         public DbSet<LPR> AppUsers { get; set; }
+        public DbSet<GroupDecision> GroupDecisions { get; set; }
     }
 }

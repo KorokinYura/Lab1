@@ -377,7 +377,7 @@ namespace Lab1.Controllers
 
             var vects = FormList();
 
-            while(ind <= Alternatives.Count())
+            while (ind <= Alternatives.Count())
             {
                 int c = ind;
                 int c1 = Alternatives.Count;
@@ -402,15 +402,19 @@ namespace Lab1.Controllers
                     _db.Results.Add(new Result
                     {
                         UserName = User.Identity.Name,
-                        IdAlt = _db.Alternatives.First(a => a.AName == Alternatives.First().AName).IdAlt
+                        IdAlt = _db.Alternatives.First(a => a.AName == Alternatives.First().AName).IdAlt,
+                        Range = 1,
+                        AWeight = -1
                     });
 
                     _db.SaveChanges();
 
+                    RestartElimination();
+
                     break;
                 }
             }
-            
+
             return RedirectToAction("Result");
         }
 
@@ -442,6 +446,97 @@ namespace Lab1.Controllers
             ind = 0;
 
             return RedirectToAction("Elimination");
+        }
+
+        [Authorize]
+        public IActionResult GroupDecision()
+        {
+            if (_db.GroupDecisions.FirstOrDefault(g => g.UserName == User.Identity.Name) != null)
+            {
+                return View("GroupVoted");
+            }
+
+            return View(new GroupDecisionViewModel
+            {
+                Alternatives = _db.Alternatives
+            });
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult GroupDecision(string[] added)
+        {
+            for (int i = 0; i < added.Length; i++)
+            {
+                var dec = new GroupDecision
+                {
+                    UserName = User.Identity.Name,
+                    IdAlt = int.Parse(added[i]),
+                    Mark = added.Length - i
+                };
+                _db.GroupDecisions.Add(dec);
+            }
+            _db.SaveChanges();
+
+            foreach (var user in _db.Users)
+                if (_db.GroupDecisions.FirstOrDefault(g => g.UserName == user.UserName) == null)
+                    return RedirectToAction("Index");
+
+            CountGroupResult();
+
+            return RedirectToAction("Result");
+        }
+
+        private IActionResult CountGroupResult()
+        {
+            var minResults = new Dictionary<int, int>();
+
+            foreach (var alt in _db.Alternatives)
+            {
+                var curMarks = new List<int>();
+                foreach (var curAlt in _db.Alternatives)
+                {
+                    if (curAlt != alt)
+                    {
+                        int mark = 0;
+                        foreach (var user in _db.Users)
+                        {
+                            var alter = _db.GroupDecisions.First(g => g.UserName == user.UserName && g.IdAlt == alt.IdAlt);
+                            var curAlter = _db.GroupDecisions.First(g => g.UserName == user.UserName && g.IdAlt != alt.IdAlt);
+                            if (alter.Mark - curAlter.Mark > 0)
+                                mark += alter.Mark - curAlter.Mark;
+                        }
+                        curMarks.Add(mark);
+                    }
+                }
+                minResults.Add(alt.IdAlt, curMarks.Min());
+            }
+
+            int key = 0;
+            int val = 0;
+            foreach(var result in minResults)
+            {
+                if (result.Value > val)
+                {
+                    key = result.Key;
+                    val = result.Value;
+                }
+            }
+
+            _db.Results.Add(new Result
+            {
+                IdAlt = _db.Alternatives.First(a => a.IdAlt == key).IdAlt,
+                Range = 1,
+                AWeight = val,
+                UserName = "Group"
+            });
+
+            foreach (var group in _db.GroupDecisions)
+                _db.GroupDecisions.Remove(group);
+
+            _db.SaveChanges();
+
+            return RedirectToAction("Result");
         }
     }
 }

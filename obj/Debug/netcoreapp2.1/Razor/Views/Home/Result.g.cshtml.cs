@@ -152,7 +152,7 @@ using Lab1.Models;
             WriteLiteral("\r\n                </td>\r\n                <td>\r\n                    ");
             EndContext();
             BeginContext(1242, 69, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "281dcd0b3a574a4aafd70c4e7487a90a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b6caad035f6f455298808344bf0c6799", async() => {
                 BeginContext(1301, 6, true);
                 WriteLiteral("Delete");
                 EndContext();

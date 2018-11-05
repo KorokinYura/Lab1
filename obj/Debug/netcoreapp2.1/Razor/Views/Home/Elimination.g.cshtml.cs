@@ -152,7 +152,7 @@ using Lab1.Models;
             WriteLiteral("        </table>\r\n    </div>\r\n    ");
             EndContext();
             BeginContext(1468, 354, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "edbdf9e71a7149cc81be4264f3176b88", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "96ffec3d01c540af8215bc51621b0572", async() => {
                 BeginContext(1499, 29, true);
                 WriteLiteral("\r\n        <input name=\"idAlt\"");
                 EndContext();
@@ -273,7 +273,7 @@ WriteAttributeValue("", 1536, Model.Alternative2.IdAlt, 1536, 25, false);
             WriteLiteral("            </table>\r\n        </div>\r\n    </div>\r\n    ");
             EndContext();
             BeginContext(3328, 354, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3adbff4a3f8c438f86b0a977822ce75f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1d4d674129654efba117f63927d07766", async() => {
                 BeginContext(3359, 29, true);
                 WriteLiteral("\r\n        <input name=\"idAlt\"");
                 EndContext();
@@ -307,7 +307,7 @@ WriteAttributeValue("", 3396, Model.Alternative1.IdAlt, 3396, 25, false);
             WriteLiteral("\r\n</div>\r\n\r\n");
             EndContext();
             BeginContext(3694, 272, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3bfda8173b044db69967865235e69f53", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11658f848b394f0e99a41f098c72a93c", async() => {
                 BeginContext(3732, 227, true);
                 WriteLiteral("\r\n    <div class=\"form-group\" style=\"text-align:center;\">\r\n        <input type=\"submit\" value=\"Начать заново\" class=\"btn btn-default center-block\" style=\"background-color: forestgreen; color: white; width: 40%\" />\r\n    </div>\r\n");
                 EndContext();
