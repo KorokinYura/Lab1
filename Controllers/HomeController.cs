@@ -496,6 +496,7 @@ namespace Lab1.Controllers
                 var curMarks = new List<int>();
                 foreach (var curAlt in _db.Alternatives)
                 {
+
                     if (curAlt != alt)
                     {
                         int mark = 0;
@@ -514,7 +515,7 @@ namespace Lab1.Controllers
 
             int key = 0;
             int val = 0;
-            foreach(var result in minResults)
+            foreach (var result in minResults)
             {
                 if (result.Value > val)
                 {
@@ -537,6 +538,61 @@ namespace Lab1.Controllers
             _db.SaveChanges();
 
             return RedirectToAction("Result");
+        }
+
+        [Authorize]
+        public IActionResult Absolute()
+        {
+            if (_db.AbsoluteDecisions.FirstOrDefault(d => d.UserName == User.Identity.Name) != null)
+                return View("GroupVoted");
+
+            return View(new AbsoluteViewModel
+            {
+                Alternatives = _db.Alternatives
+            });
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult Absolute(int idAlt)
+        {
+            _db.AbsoluteDecisions.Add(new AbsoluteDecision
+            {
+                UserName = User.Identity.Name,
+                IdAlt = idAlt
+            });
+            _db.SaveChanges();
+
+            if (_db.AbsoluteDecisions.Count() == _db.Users.Count())
+            {
+                int half = _db.Users.Count() / 2 + 1;
+
+                foreach (var alt in _db.Alternatives)
+                {
+                    var n = alt.AName;
+                    var t = _db.AbsoluteDecisions.Count(d => d.IdAlt == alt.IdAlt);
+                    if (_db.AbsoluteDecisions.Count(d => d.IdAlt == alt.IdAlt) >= half)
+                    {
+                        _db.Results.Add(new Result
+                        {
+                            IdAlt = alt.IdAlt,
+                            Range = 1,
+                            AWeight = _db.AbsoluteDecisions.Count(d => d.IdAlt == alt.IdAlt),
+                            UserName = "Absolute"
+                        });
+
+                        break;
+                    }
+                }
+
+                foreach (var group in _db.AbsoluteDecisions)
+                    _db.AbsoluteDecisions.Remove(group);
+                _db.SaveChanges();
+
+                return RedirectToAction("Result");
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

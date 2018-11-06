@@ -46,3 +46,4 @@ D:\NURE\3 курс\1 семестр\МоТи\Lab1\Lab1\obj\Debug\netcoreapp2.1\R
 D:\NURE\3 курс\1 семестр\МоТи\Lab1\Lab1\obj\Debug\netcoreapp2.1\Razor\Views\Home\Elimination.g.cshtml.cs
 D:\NURE\3 курс\1 семестр\МоТи\Lab1\Lab1\obj\Debug\netcoreapp2.1\Razor\Views\Home\GroupDecision.g.cshtml.cs
 D:\NURE\3 курс\1 семестр\МоТи\Lab1\Lab1\obj\Debug\netcoreapp2.1\Razor\Views\Home\GroupVoted.g.cshtml.cs
+D:\NURE\3 курс\1 семестр\МоТи\Lab1\Lab1\obj\Debug\netcoreapp2.1\Razor\Views\Home\Absolute.g.cshtml.cs

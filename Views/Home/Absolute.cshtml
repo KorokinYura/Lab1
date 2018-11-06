@@ -1,0 +1,21 @@
+﻿@model Lab1.Models.ViewModels.AbsoluteViewModel
+@{
+    ViewData["Title"] = "Absolute";
+}
+
+<h2>Absolute</h2>
+<h4>Чтобы засчитался результат, необходимо, чтобы за одну из альтернатив проголосовало больше 50% пользователей</h4>
+
+<form asp-action="Absolute">
+    <ul class="list-group" id="list">
+        @foreach (var alt in Model.Alternatives)
+        {
+            <li class="list-group-item" id="@alt.IdAlt">
+                <input type="radio" name="idAlt" value="@alt.IdAlt" checked/>
+                <label>@alt.AName</label>
+                <br>
+            </li>
+        }
+    </ul>
+    <input id="submit" type="submit" value="Confirm" class="btn btn-default" />
+</form>

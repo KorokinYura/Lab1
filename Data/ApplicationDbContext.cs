@@ -21,5 +21,6 @@ namespace Lab1.Data
         public DbSet<Result> Results { get; set; }
         public DbSet<LPR> AppUsers { get; set; }
         public DbSet<GroupDecision> GroupDecisions { get; set; }
+        public DbSet<AbsoluteDecision> AbsoluteDecisions { get; set; }
     }
 }
