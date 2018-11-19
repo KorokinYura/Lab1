@@ -1,0 +1,34 @@
+﻿@model Lab1.Models.ViewModels.ShowSimpsonViewModel
+@{
+    ViewData["Title"] = "ShowSimpson";
+}
+
+<h2>ShowSimpson</h2>
+
+<div class="panel panel-default">
+    <table class="table">
+        <thead>
+            <tr>
+                @for(int i = 0; i < Model.Users.Count(); i++)
+                {
+                    <th>
+                        @Model.GroupDecisions.ElementAt(i * Model.Alternatives.Count()).UserName
+                    </th>
+                }
+            </tr>
+        </thead>
+        @for (int i = 0; i < Model.Alternatives.Count(); i++)
+        {
+            <tbody>
+                <tr>
+                    @for (int j = 0; j < Model.Users.Count(); j++)
+                    {
+                        <th style="font-weight: normal">
+                            @Model.Alternatives.First(a => a.IdAlt == Model.GroupDecisions.ElementAt(i + j * Model.Alternatives.Count()).IdAlt).AName
+                        </th>
+                    }
+                </tr>
+            </tbody>
+        }
+    </table>
+</div>

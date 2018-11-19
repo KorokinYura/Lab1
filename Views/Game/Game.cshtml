@@ -1,0 +1,45 @@
+﻿@model Lab1.Models.ViewModels.GameViewModel
+@{
+    ViewData["Title"] = "Game";
+}
+
+<h2>Game</h2>
+
+<div style="font-size: 160%">
+    <span>
+        Игрок:
+    </span>
+    <span style="float: right">
+        ИИ:
+    </span>
+    <br>
+    <span style="margin-left: 10px">
+        <span id="playerPoints">
+            0
+        </span>
+    </span>
+    <span style="float: right; margin-right: 10px">
+        <span id="enemyPoints">
+            0
+        </span>
+    </span>
+    <br><br><br><br>
+    <div id="iconSelection" style="text-align: center">
+        <br><br>
+        <input type="button" onclick="selectIcon(0)" class="btn btn-default rock" />
+        <input type="button" onclick="selectIcon(1)" class="btn btn-default scissors" />
+        <input type="button" onclick="selectIcon(2)" class="btn btn-default paper" />
+        <input type="button" onclick="selectIcon(3)" class="btn btn-default lizard" />
+        <input type="button" onclick="selectIcon(4)" class="btn btn-default spock" />
+    </div>
+    <div id="restartGame" style="text-align: center; display: none">
+        <div id="gameResult" style="font-size: 200%">
+
+        </div>
+        <div id="playerChoise" class="rock" style="position: absolute; left: 620px"></div>
+        <img src="~/images/Game/vs.png" style="position: absolute; left: 740px; top: 355px; width: 60px" />
+        <div id="enemyChoise" class="rock" style="position: absolute; right: 620px"></div>
+        <br><br><br><br>
+        <input type="button" onclick="restartGame()" class="btn btn-default" value="Restart" />
+    </div>
+</div>

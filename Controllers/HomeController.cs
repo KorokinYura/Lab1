@@ -451,6 +451,11 @@ namespace Lab1.Controllers
         [Authorize]
         public IActionResult GroupDecision()
         {
+            if (_db.GroupDecisions.Count() >= _db.Users.Count() * _db.Alternatives.Count())
+                foreach (var group in _db.GroupDecisions)
+                    _db.GroupDecisions.Remove(group);
+            _db.SaveChanges();
+
             if (_db.GroupDecisions.FirstOrDefault(g => g.UserName == User.Identity.Name) != null)
             {
                 return View("GroupVoted");
@@ -484,10 +489,15 @@ namespace Lab1.Controllers
 
             CountGroupResult();
 
-            return RedirectToAction("Result");
+            return View("ShowSimpson", new ShowSimpsonViewModel
+            {
+                GroupDecisions = _db.GroupDecisions,
+                Users = _db.Users,
+                Alternatives = _db.Alternatives
+            });
         }
 
-        private IActionResult CountGroupResult()
+        private void CountGroupResult()
         {
             var minResults = new Dictionary<int, int>();
 
@@ -496,7 +506,6 @@ namespace Lab1.Controllers
                 var curMarks = new List<int>();
                 foreach (var curAlt in _db.Alternatives)
                 {
-
                     if (curAlt != alt)
                     {
                         int mark = 0;
@@ -532,12 +541,7 @@ namespace Lab1.Controllers
                 UserName = "Group"
             });
 
-            foreach (var group in _db.GroupDecisions)
-                _db.GroupDecisions.Remove(group);
-
             _db.SaveChanges();
-
-            return RedirectToAction("Result");
         }
 
         [Authorize]

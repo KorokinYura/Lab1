@@ -67,7 +67,7 @@ using Lab1.Models;
 #line default
 #line hidden
             BeginContext(188, 1123, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1d15a2483393414abba7a1893e811725", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "710e4c8ae7aa433eadeb24c077497b7a", async() => {
                 BeginContext(221, 47, true);
                 WriteLiteral("\r\n    <div class=\"col-md-5 panel panel-default\"");
                 EndContext();

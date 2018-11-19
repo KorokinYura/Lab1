@@ -1,0 +1,64 @@
+﻿.rock {
+    background: url(/images/Game/rock.png);
+    background-repeat: no-repeat;
+    width: 93px;
+    height: 93px;
+    border-radius: 50px;
+    outline: none !important;
+}
+
+.scissors {
+    background: url(/images/Game/scissors.png);
+    background-repeat: no-repeat;
+    width: 93px;
+    height: 93px;
+    border-radius: 50px;
+    outline: none !important;
+}
+
+.paper {
+    background: url(/images/Game/paper.png);
+    background-repeat: no-repeat;
+    width: 93px;
+    height: 93px;
+    border-radius: 50px;
+    outline: none !important;
+}
+
+.lizard {
+    background: url(/images/Game/lizard.png);
+    background-repeat: no-repeat;
+    width: 93px;
+    height: 93px;
+    border-radius: 50px;
+    outline: none !important;
+}
+
+.spock {
+    background: url(/images/Game/spock.png);
+    background-repeat: no-repeat;
+    width: 93px;
+    height: 93px;
+    border-radius: 50px;
+    outline: none !important;
+}
+
+.rock:active {
+    background: url(/images/Game/rock.png);
+}
+
+.scissors:active {
+    background: url(/images/Game/scissors.png);
+}
+
+.paper:active {
+    background: url(/images/Game/paper.png);
+}
+
+.lizard:active {
+    background: url(/images/Game/lizard.png);
+}
+
+.spock:active {
+    background: url(/images/Game/spock.png);
+}
